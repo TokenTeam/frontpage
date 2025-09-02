@@ -45,6 +45,7 @@ export default function Home() {
                 width={60}
                 height={60}
                 priority
+                unoptimized
               />
               <div className="text-4xl font-bold tracking-wider">
                 <h1>掌上吾理</h1>
