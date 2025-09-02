@@ -39,7 +39,6 @@ export default function Home() {
           <div className="flex flex-col gap-64 sm:gap-12 items-center">
             <div className="flex items-center gap-6">
               <Image
-                className="dark:invert"
                 src="/logo.webp"
                 alt="掌上吾理"
                 width={60}
