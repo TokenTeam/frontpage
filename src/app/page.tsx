@@ -17,6 +17,8 @@ export default function Home() {
       setDownloadUrl(
         "https://apps.apple.com/cn/app/%E6%8E%8C%E4%B8%8A%E5%90%BE%E7%90%86/id1494650352",
       );
+    } else if (detectedDevice === "HMOS") {
+      setDownloadUrl("");
     } else {
       setDownloadUrl("https://download.tokenteam.net/latest.apk");
     }
@@ -50,16 +52,19 @@ export default function Home() {
                 <h1>掌上吾理</h1>
               </div>
             </div>
-            <div className="flex justify-center">
-              <a
-                href={downloadUrl || "#"}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="rounded-lg border border-solid border-transparent transition-colors flex items-center justify-center text-background gap-2 bg-[#3996FD] font-medium text-sm sm:text-base h-12 px-6 sm:px-10 w-72"
-              >
-                <FiDownload size={20} className="dark:invert" />
-                <span className="text-s">下载 {device} 版</span>
-              </a>
+
+            <div>
+              <div className="flex justify-center">
+                <a
+                  href={downloadUrl || "#"}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="rounded-lg border border-solid border-transparent transition-colors flex items-center justify-center text-background gap-2 bg-[#3996FD] font-medium text-sm sm:text-base h-12 px-6 sm:px-10 w-72"
+                >
+                  <FiDownload size={20} className="dark:invert" />
+                  <span className="text-s">下载 {device} 版</span>
+                </a>
+              </div>
             </div>
           </div>
         </div>
