@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import { useCallback, useEffect, useState } from "react";
-import { FiDownload } from "react-icons/fi";
 import { getDeviceType } from "@/utils/detectDevice";
 
 export default function Home() {
@@ -15,7 +14,7 @@ export default function Home() {
 
     if (detectedDevice === "iOS") {
       setDownloadUrl(
-        "https://apps.apple.com/cn/app/%E6%8E%8C%E4%B8%8A%E5%90%BE%E7%90%86/id1494650352",
+        "https://apps.apple.com/cn/app/%E6%8E%8C%E4%B8%8A%E5%90%BE%E7%90%86/id1494650352"
       );
     } else if (detectedDevice === "HMOS") {
       setDownloadUrl("");
@@ -35,41 +34,72 @@ export default function Home() {
   if (!device) return null;
 
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 sm:items-start">
-        <div className="flex gap-4 items-center justify-center flex-col sm:flex-row">
-          <div className="flex flex-col gap-64 sm:gap-12 items-center">
-            <div className="flex items-center gap-6">
-              <Image
-                src="/logo.webp"
-                alt="掌上吾理"
-                width={60}
-                height={60}
-                priority
-                unoptimized
-              />
-              <div className="text-4xl font-bold tracking-wider">
-                <h1>掌上吾理</h1>
-              </div>
-            </div>
+    <div className="font-sans min-h-[100dvh] relative overflow-hidden">
+      <div className="fixed inset-0 animate-gradient">
+        <div className="absolute inset-0 backdrop-blur-[100px]"></div>
+        <div className="bubble left-[10%] top-[20%]"></div>
+        <div className="bubble left-[60%] top-[40%]"></div>
+        <div className="bubble left-[30%] top-[60%]"></div>
+        <div className="bubble left-[80%] top-[25%]"></div>
+        <div className="bubble left-[45%] top-[75%]"></div>
+      </div>
+      <main className="flex flex-col min-h-[100dvh] relative z-10 px-6 sm:px-16 pb-[env(safe-area-inset-bottom)] pt-[env(safe-area-inset-top)]">
+        <div className="flex-1 flex flex-col items-center justify-center w-full max-w-3xl mx-auto gap-12">
+          <h1 className="text-4xl font-bold tracking-wider text-white">
+            掌上吾理
+          </h1>
+          <div className="w-full max-w-[128px] sm:max-w-[240px] aspect-square relative">
+            <Image
+              src="/logo.png"
+              alt="掌上吾理"
+              fill
+              className="rounded-3xl shadow-lg"
+              style={{
+                objectFit: "contain",
+                
+              }}
+              priority
+              unoptimized
+            />
+          </div>
+          <div className="flex justify-center w-full mt-8">
+          <button
+            onClick={() => {
+              const btn = document.querySelector(
+                ".download-button"
+              ) as HTMLButtonElement;
+              if (btn) {
+                btn.classList.remove("shine");
+                // 触发重排以重新开始动画
+                void btn.offsetWidth;
+                btn.classList.add("shine");
+              }
 
-            <div>
-              <div className="flex justify-center">
-                <a
-                  href={downloadUrl || "#"}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="rounded-lg border border-solid border-transparent transition-colors flex items-center justify-center text-background gap-2 bg-[#3996FD] font-medium text-sm sm:text-base h-12 px-6 sm:px-10 w-72"
-                >
-                  <FiDownload size={20} className="dark:invert" />
-                  <span className="text-s">下载 {device} 版</span>
-                </a>
-              </div>
-            </div>
+              if (downloadUrl) {
+                window.open(downloadUrl, "_blank");
+              }
+            }}
+            className="download-button shine rounded-lg border border-solid border-white/20 flex items-center justify-center text-white gap-2 hover:bg-white/20 font-medium text-sm sm:text-base h-12 px-6 sm:px-10 w-72"
+          >
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+              <polyline points="7 10 12 15 17 10" />
+              <line x1="12" y1="15" x2="12" y2="3" />
+            </svg>
+            <span>下载 {device} 版</span>
+          </button>
           </div>
         </div>
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center"></footer>
     </div>
   );
 }
