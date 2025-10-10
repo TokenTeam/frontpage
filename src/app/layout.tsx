@@ -8,7 +8,7 @@ const geistSans = Geist({
 });
 
 export const metadata: Metadata = {
-  title: "掌上吾理",
+  title: "吾理经纬",
   description: "一键开启愉快的武汉理工大学校园生活！",
 };
 
