@@ -17,7 +17,7 @@ export default function Home() {
         "https://apps.apple.com/cn/app/%E6%8E%8C%E4%B8%8A%E5%90%BE%E7%90%86/id1494650352"
       );
     } else if (detectedDevice === "HMOS") {
-      setDownloadUrl("");
+      setDownloadUrl("https://download.tokenteam.net/latest.apk");
     } else {
       setDownloadUrl("https://download.tokenteam.net/latest.apk");
     }
@@ -46,12 +46,12 @@ export default function Home() {
       <main className="flex flex-col min-h-[100dvh] relative z-10 px-6 sm:px-16 pb-[env(safe-area-inset-bottom)] pt-[env(safe-area-inset-top)]">
         <div className="flex-1 flex flex-col items-center justify-center w-full max-w-3xl mx-auto gap-12">
           <h1 className="text-4xl font-bold tracking-wider text-white">
-            掌上吾理
+            吾理经纬
           </h1>
           <div className="w-full max-w-[128px] sm:max-w-[240px] aspect-square relative">
             <Image
               src="/logo.png"
-              alt="掌上吾理"
+              alt="吾理经纬"
               fill
               className="rounded-3xl shadow-lg"
               style={{
