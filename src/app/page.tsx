@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useCallback, useEffect, useState } from "react";
 import { getDeviceType } from "@/utils/detectDevice";
+import axios from "axios";
 
 export default function Home() {
   const [device, setDevice] = useState<null | string>(null);
@@ -22,6 +23,14 @@ export default function Home() {
       setDownloadUrl("https://download.tokenteam.net/latest.apk");
     }
   }, []);
+
+  const handleDownloadClick = async () => {
+    try {
+      await axios.get("https://count.api.tokenteam.net/?project=iwut-download");
+    } catch (error) {
+      console.error("Count failed:", error);
+    }
+  };
 
   useEffect(() => {
     detectDevice();
@@ -76,7 +85,9 @@ export default function Home() {
               }
 
               if (downloadUrl) {
-                window.open(downloadUrl, "_blank");
+                handleDownloadClick().then(() => {
+                  window.open(downloadUrl, "_blank");
+                });
               }
             }}
             className="download-button shine rounded-lg border border-solid border-white/20 flex items-center justify-center text-white gap-2 hover:bg-white/20 font-medium text-sm sm:text-base h-12 px-6 sm:px-10 w-72"
