@@ -18,15 +18,15 @@ export default function Home() {
         "https://apps.apple.com/cn/app/%E6%8E%8C%E4%B8%8A%E5%90%BE%E7%90%86/id1494650352"
       );
     } else if (detectedDevice === "HMOS") {
-      setDownloadUrl("https://download.tokenteam.net/latest.apk");
+      setDownloadUrl("https://download.tokenteam.dev/latest.apk");
     } else {
-      setDownloadUrl("https://download.tokenteam.net/latest.apk");
+      setDownloadUrl("https://download.tokenteam.dev/latest.apk");
     }
   }, []);
 
   const handleDownloadClick = async () => {
     try {
-      await axios.get("https://count.api.tokenteam.net/?project=iwut-download");
+      await axios.get("https://count.api.tokenteam.dev/?project=iwut-download");
     } catch (error) {
       console.error("Count failed:", error);
     }
